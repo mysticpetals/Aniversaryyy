@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>For My Patidev ♡</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#160d20;color:#fff0d1;font-family:monospace;text-align:center;overflow-x:hidden}
+main{max-width:600px;margin:auto;padding:18px}
+h1{color:#ff75ae;font-size:clamp(30px,8vw,45px);text-shadow:4px 4px #702447}
+h2{color:#ffe783}
+p{font-size:14px;line-height:1.9}
+.box{background:#281832;border:3px solid #ff75ae;box-shadow:5px 5px #703454;padding:20px;margin:18px 0}
+button{font-family:monospace;font-weight:bold;background:#ff75ae;color:#271125;border:3px solid #fff0d1;padding:12px;margin:6px;cursor:pointer}
+button:active{transform:scale(.94)}
+.screen{display:none;animation:appear .35s steps(5)}
+.screen.active{display:block}
+@keyframes appear{from{opacity:0;transform:translateX(25px)}to{opacity:1;transform:translateX(0)}}
+.heart{position:fixed;bottom:-40px;pointer-events:none;animation:float 7s linear forwards;z-index:-1}
+@keyframes float{to{transform:translateY(-110vh) rotate(360deg);opacity:0}}
+.art{font-size:50px;animation:bob .8s steps(3) infinite alternate}
+@keyframes bob{to{transform:translateY(-8px)}}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.tile{min-height:90px;background:#3b2246;color:#fff0d1;border-color:#b88bff}
+.content{display:none;background:#1b1027;border:2px dashed #ff75ae;padding:12px;margin-top:12px;line-height:1.9}
+.content.show{display:block}
+.letter{text-align:left;line-height:2}
+#cake{position:relative;width:250px;height:190px;margin:20px auto}
+.base{position:absolute;bottom:25px;left:35px;width:180px;height:85px;background:#ff75ae;border:4px solid #fff0d1;box-shadow:inset 0 -20px #e74782}
+.top{position:absolute;bottom:106px;left:35px;width:180px;height:25px;border:4px solid #fff0d1;border-radius:50%;background:#ffc3d9}
+.candle{position:absolute;bottom:130px;width:9px;height:30px;background:repeating-linear-gradient(#a98aff 0 6px,#fff0d1 6px 10px);border:1px solid white}
+.c1{left:85px}.c2{left:120px}.c3{left:155px}
+.flame{position:absolute;bottom:160px;width:14px;height:18px;border-radius:50% 50% 40% 40%;background:#ffe783;box-shadow:0 0 12px orange;animation:flicker .25s infinite alternate}
+.f1{left:83px}.f2{left:118px}.f3{left:153px}
+@keyframes flicker{to{transform:scale(.75) rotate(8deg)}}
+.smoke{display:none;position:absolute;bottom:155px;font-size:24px}
+.blown .flame{display:none}.blown .smoke{display:block;animation:puff 1s forwards}
+.s1{left:78px}.s2{left:113px}.s3{left:148px}
+@keyframes puff{to{transform:translateY(-45px);opacity:0}}
+.slice{position:absolute;bottom:30px;right:27px;width:42px;height:55px;background:#ffb4d1;border:3px solid #fff0d1;transition:.7s}
+.slice.gone{transform:translate(65px,-15px) rotate(20deg)}
+#popup{display:none;position:fixed;inset:0;background:#000b;align-items:center;justify-content:center;padding:20px}
+#popup.show{display:flex}
+.popbox{background:#281832;border:4px solid #ff75ae;padding:22px;max-width:350px;width:100%}
+.small{font-size:11px;color:#d9b9e9}
+</style>
+</head>
+<body>
+<main>
+<div class="box">
+<div>♡ PATIDEV.EXE ♡</div>
+<p class="small">PLAYER 1: UR MALKIN</p>
+<div>LOVE XP: <span id="xp">0</span> ♡</div>
+</div>
+
+<section id="home" class="screen active">
+<div class="box">
+<div class="art">💗 ✦ 🌹</div>
+<p>✧ A VERY IMPORTANT GAME ✧</p>
+<h1>LEVEL 01:<br>US FOREVER</h1>
+<p>A tiny pixel universe dedicated to one particular idiot.</p>
+<p>MISSION: CELEBRATE OUR FIRST MONTH ♡</p>
+<button onclick="go('quests')">START GAME ▶</button>
+<button onclick="joke()">PRESS FOR NONSENSE</button>
+</div>
+</section>
+
+<section id="quests" class="screen">
+<div class="box">
+<h2>♡ QUEST BOARD ♡</h2>
+<p>Four missions. Unlimited feelings. Zero brain cells.</p>
+<p>□ Open a secret love note</p>
+<p>□ Read the love letter</p>
+<p>□ Redeem a coupon</p>
+<p>□ Blow out the cake candles</p>
+<button onclick="go('notes')">LOVE NOTES 💌</button>
+<button onclick="go('letter')">MY LETTER ♡</button>
+<button onclick="go('cake')">CAKE QUEST 🎂</button>
+<button onclick="go('coupons')">REWARD SHOP 🎟</button>
+<button onclick="go('home')">BACK ◀</button>
+</div>
+</section>
+
+<section id="notes" class="screen">
+<div class="box">
+<h2>💌 FIVE LITTLE CONFESSIONS</h2>
+<div class="grid">
+<button class="tile" onclick="note(0)">💗<br>A LITTLE CONFESSION</button>
+<button class="tile" onclick="note(1)">😤<br>UNFAIR ADVANTAGE</button>
+<button class="tile" onclick="note(2)">🌱<br>A TINY PROMISE</button>
+<button class="tile" onclick="note(3)">👀<br>EXPOSING MYSELF</button>
+<button class="tile" style="grid-column:1/3" onclick="note(4)">👑<br>FOR MY PATIDEV</button>
+</div>
+<div id="noteText" class="content"></div>
+<button onclick="go('letter')">NEXT: MY LETTER 💌</button>
+<button onclick="go('quests')">BACK ◀</button>
+</div>
+</section>
+
+<section id="letter" class="screen">
+<div class="box">
+<div class="art">💌🌹💌</div>
+<h2>A LETTER FROM UR MALKIN</h2>
+<div class="letter">
+<p><b>dear patidev,</b></p>
+<p>Even though I hate God sometimes, thinking nothing good will happen, but He gave me u 💗</p>
+<p>It's only been a month and u made me feel loved the most in such a long time. U became the person I want to talk to every second, spend every moment with.</p>
+<p>U have an unfair advantage of making me smile at ur replies every time, and at night blush 🤭</p>
+<p>I don't know how to express my feelings but I will try for u.</p>
+<p>Now ofc because of VERY professional overthinking I feel a little scared, but I know I don't need to be. I don't need us to be perfect or like some movie where everything magically works out. I want us to be just honest.</p>
+<p>And if u think I will leave u, then tell ur mind this woman's heart skips a beat whenever u are talking to me. U entered my heart, now u can't leave.</p>
+<p>I always hope u are never afraid to tell me ur real feelings or hardships.</p>
+<p>This first month was just a small chapter in our journey.</p>
+<p>So happy first month, patidev.</p>
+<p>I like u when ur clingy and shirtless 🤭</p>
+<p style="text-align:center;color:#ff75ae">MAWHHHH 💋💋<br>MAWHHHHH 💋<br>WAIT NO, ONE MORE 💋💗</p>
+<p style="text-align:right;color:#ff75ae"><b>~ Ur Malkin ♡</b></p>
+</div>
+<button onclick="go('cake')">NEXT: CAKE TIME 🎂</button>
+<button onclick="go('quests')">BACK ◀</button>
+</div>
+</section>
+
+<section id="cake" class="screen">
+<div class="box">
+<h2>🎂 MAKE A WISH</h2>
+<p>Tap the cake to blow out its candles!</p>
+<div id="cake" onclick="blow()">
+<div class="base"></div><div class="top"></div>
+<div class="candle c1"></div><div class="candle c2"></div><div class="candle c3"></div>
+<div class="flame f1"></div><div class="flame f2"></div><div class="flame f3"></div>
+<div class="smoke s1">☁️</div><div class="smoke s2">☁️</div><div class="smoke s3">☁️</div>
+<div class="slice" id="slice"></div>
+</div>
+<p id="cakeText">Candles lit. Cake unprotected.</p>
+<button onclick="blow()">💨 BLOW OUT CANDLES</button>
+<button onclick="steal()">🍰 STEAL A SLICE</button>
+<button onclick="go('coupons')">REWARDS 🎟</button>
+</div>
+</section>
+
+<section id="coupons" class="screen">
+<div class="box">
+<h2>🎟 COUPON INVENTORY</h2>
+<p>Redeem wisely, husband.</p>
+<div class="grid">
+<button class="tile" onclick="coupon(0)">👀<br>ATTENTION TAX</button>
+<button class="tile" onclick="coupon(1)">🕊️<br>FIGHT CANCELLATION</button>
+<button class="tile" onclick="coupon(2)">🎁<br>MYSTERY REWARD</button>
+<button class="tile" onclick="coupon(3)">📺<br>FINAL BOSS</button>
+</div>
+<div id="couponText" class="content"></div>
+<button onclick="go('final')">FINAL SURPRISE ✨</button>
+<button onclick="go('quests')">BACK ◀</button>
+</div>
+</section>
+
+<section id="final" class="screen">
+<div class="box">
+<div class="art">💗🌹💗</div>
+<h1>QUEST COMPLETE!</h1>
+<p>Happy first month, patidev. ♡</p>
+<p>Reward unlocked:</p>
+<p>♡ One clingy girlfriend</p>
+<p>♡ Unlimited pixel hearts</p>
+<p>♡ A lifetime supply of random nonsense</p>
+<p>♡ The privilege of being called PATIDEV</p>
+<h2>RANK: CERTIFIED CUTIES ♡</h2>
+<button onclick="showPop('SECRET ENDING 💗','The final boss was me trying to act normal around u. I failed spectacularly. 😭💋')">SECRET ENDING ✨</button>
+<button onclick="go('home')">PLAY AGAIN ↻</button>
+</div>
+</section>
+<p class="small">MADE WITH TOO MANY HEARTS ♡</p>
+</main>
+
+<div id="popup"><div class="popbox">
+<h2 id="popTitle">SURPRISE!</h2><p id="popMessage"></p>
+<button onclick="hidePop()">OKAY OKAY ♡</button>
+</div></div>
+
+<script>
+const notes=[
+["A LITTLE CONFESSION","If someone told me a month ago that one person would become such a big part of my everyday life, I would've laughed. And then u happened. 💗"],
+["YOUR UNFAIR ADVANTAGE","It's actually so annoying how u can make me smile at my screen just by replying. Like sir, who gave u this power???"],
+["A TINY PROMISE","I can't promise that every day will be perfect, but I can promise to be there for u in every step."],
+["EXPOSING MYSELF","Not me thinking about our first meeting every day 😁😁"],
+["FOR MY PATIDEV","Happy one month, patidev. U are officially stuck with this overthinking, clingy, attitude-filled girl who likes u an unreasonable amount. Congratulations 😁💗"]
+];
+const coupons=[
+["THE ATTENTION TAX","Congratulations hubby! You've officially claimed my undivided attention. No distractions, just me and you. Hehe 🤭"],
+["STUPID FIGHT CANCELLATION","One free cancellation for a stupid fight. Redeem when needed. Talk it out with me, okay? ♡"],
+["MYSTERY REWARD","Congratulations u got a clingy wife with attitude she learnt from K-dramas 😁"],
+["THE FINAL BOSS ♛","Congratulations hubby, u have to watch unlimited K-dramas with me 😁💗"]
+];
+let xp=0,seen=new Set(),redeemed=new Set(),candles=false,slice=false;
+function go(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');window.scrollTo(0,0)}
+function note(i){
+ const el=document.getElementById('noteText');el.innerHTML='<b>'+notes[i][0]+'</b><p>'+notes[i][1]+'</p>';el.classList.add('show');
+ if(!seen.has(i)){seen.add(i);xp+=10;document.getElementById('xp').textContent=xp}
+}
+function coupon(i){
+ const el=document.getElementById('couponText');
+ el.innerHTML='<b>'+coupons[i][0]+'</b><p>'+coupons[i][1]+'</p><button onclick="redeem('+i+')">REDEEM ♡</button>';el.classList.add('show');
+}
+function redeem(i){
+ if(redeemed.has(i)){showPop('ALREADY REDEEMED 😭','This coupon has been used. No refunds, only negotiations.');return}
+ redeemed.add(i);xp+=10;document.getElementById('xp').textContent=xp;
+ document.getElementById('couponText').innerHTML='<b>COUPON REDEEMED! ♡</b><p>'+coupons[i][1]+'</p>';
+}
+function blow(){
+ if(candles){showPop('CANDLES ALREADY OUT 🎂','The cake has seen enough chaos.');return}
+ candles=true;document.getElementById('cake').classList.add('blown');
+ document.getElementById('cakeText').textContent='WISH MADE! NOW STEAL A SLICE 🍰';
+ xp+=20;document.getElementById('xp').textContent=xp;
+ showPop('WISH GRANTED ✨','Make a tiny wish for us, patidev. The pixel fairies are trying their best. 💗');
+}
+function steal(){
+ if(!candles){showPop('CAKE POLICE 🚨','Blow out the candles first, cake bandit!');return}
+ if(slice){showPop('SIR. 😭','You already stole the slice.');return}
+ slice=true;document.getElementById('slice').classList.add('gone');
+ document.getElementById('cakeText').textContent='CAKE SLICE ACQUIRED. CRUMB CRIMES: SUCCESSFUL.';
+ showPop('ACHIEVEMENT UNLOCKED 🍰','Certified Cake Bandit. Save at least one crumb for your girlfriend.');
+}
+const jokes=[
+'URGENT: YOU HAVE BEEN CHARGED WITH BEING TOO CUTE. DEFEND YOURSELF.',
+'ERROR 404: PATIDEV BRAIN CELLS NOT FOUND. REASON: GIRLFRIEND.',
+'Breaking news: local girlfriend smiling at her screen like an absolute fool.',
+'Your subscription to my nonsense has automatically renewed. ♡',
+'The council has reviewed your case. Verdict: TOO CUTE. Appeal denied.',
+'SYSTEM ALERT: excessive husband energy detected. 😭'
+];
+function joke(){showPop('RANDOM EVENT ⚠️',jokes[Math.floor(Math.random()*jokes.length)])}
+function showPop(title,msg){document.getElementById('popTitle').textContent=title;document.getElementById('popMessage').textContent=msg;document.getElementById('popup').classList.add('show')}
+function hidePop(){document.getElementById('popup').classList.remove('show')}
+setInterval(()=>{
+ const h=document.createElement('div');h.className='heart';h.textContent=['♡','♥','🌹','✦','💗'][Math.floor(Math.random()*5)];
+ h.style.left=Math.random()*100+'vw';h.style.fontSize=(15+Math.random()*20)+'px';h.style.animationDuration=(5+Math.random()*5)+'s';
+ document.body.appendChild(h);setTimeout(()=>h.remove(),10000);
+},600);
+</script>
+</body>
+                                         </html>
+  
